@@ -148,7 +148,8 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/projectList" element={<ProjectList />} />
+                    <Route path="/projectList" element={<ProjectList 
+                   />} />
                     <Route
                         path="/project"
                         element={
