@@ -1,9 +1,12 @@
 import "../scss/App.scss";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "./Header";
+import Hero from "./Hero";
 import Footer from "./Footer";
 import Form from "./Form";
 import Preview from "./Preview";
+import ProjectList from "./ProjectList";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import localStorageService from "../services/localStorage";
@@ -145,20 +148,13 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
+                    <Route path="/projectList" element={<ProjectList />} />
                     <Route
                         path="/project"
                         element={
                             <main className="main">
-                                <section className="hero">
-                                    <h2 className="title">Proyectos molones</h2>
-                                    <p className="hero__text">
-                                        Escaparate en línea para recoger ideas a
-                                        través de la tecnología
-                                    </p>
-                                    <a className="button--link" href="./">
-                                        Ver proyectos
-                                    </a>
-                                </section>
+
+                                <Hero />
 
                                 <Preview project={projectInfo} />
 
