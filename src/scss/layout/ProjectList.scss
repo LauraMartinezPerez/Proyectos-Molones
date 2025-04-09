@@ -1,0 +1,23 @@
+@use "../core/variables" as vars;
+
+.cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .cardList {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-content: center;
+        width: 160%;
+        
+    }
+}
