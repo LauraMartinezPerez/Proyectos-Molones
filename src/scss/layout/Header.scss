@@ -1,0 +1,27 @@
+@use "../core/variables" as vars;
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+}
+
+.header .header__brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 7px 5px;
+    gap: 7px;
+}
+
+.header .header__companyLogo {
+    height: 31px;
+    color: vars.$color-white;
+}
+
+.header .header__title {
+    font: vars.$font-title-brand;
+    text-transform: capitalize;
+    color: vars.$color-white;
+}

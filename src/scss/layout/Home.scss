@@ -1,0 +1,61 @@
+@use "../core/variables" as vars;
+
+.home {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+        font: vars.$font-card-title;
+        padding: 20px;
+    }
+
+    &__hero {
+        width: 90%;
+        height: 200px;
+        display: block;
+
+        @media (min-width: 600px) {
+            height: 300px;
+        }
+
+        @media (min-width: 840px) {
+            height: 400px;
+        }
+        @media (min-width: 1200px) {
+            height: 500px;
+        }
+    }
+
+    &__text {
+        max-width: 80%;
+        font: vars.$font-card-subtitle;
+        text-align: justify;
+        padding: 20px;
+    }
+
+    &__btn {
+        display: block;
+        width: 145px;
+
+        margin-inline: auto;
+        margin-block: 8px;
+        padding: 5px 18px;
+        color: vars.$color-white;
+        font: vars.$font-button;
+        text-transform: none;
+        text-decoration: none;
+        text-align: center;
+
+        border-radius: 40px;
+        background-color: transparent;
+        background-image: linear-gradient(
+            to right,
+            vars.$color-dark-lilac -2%,
+            #c0b7e8 98%
+        );
+
+        cursor: pointer;
+    }
+}
