@@ -30,8 +30,7 @@ const fakeProjects = [{
 
 }];
 
-
-function ProjectList(fakeProjects) {
+function ProjectList() {
 
   return (
     <>
@@ -39,11 +38,9 @@ function ProjectList(fakeProjects) {
         <Hero />
         <div className="container">
         <section className="cardList">
-
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+          {fakeProjects.map((project, index) => (
+            <Card cardData={project} key={index}/>
+          ))}
         </section>
         </div>
     </>
