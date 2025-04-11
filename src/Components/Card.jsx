@@ -1,7 +1,7 @@
 /* import imageAvatar from '../images/avatar.webp'; */
 
 export default function Card( {cardData} ) {
-    console.log(cardData.name);
+
     return (
         <article className="card">
             <h2 className="card__projectTitle">
