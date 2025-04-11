@@ -18,3 +18,6 @@ CREATE TABLE autor (
     job VARCHAR(45) NOT NULL,
     autorImage LONGTEXT NOT NULL
 );
+
+ALTER TABLE project ADD COLUMN fk_autor INT NOT NULL;
+ALTER TABLE project ADD FOREIGN KEY (fk_autor) REFERENCES autor(id);
