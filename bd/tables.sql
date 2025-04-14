@@ -31,6 +31,10 @@ INSERT INTO project (projectName, slogan, demo, repository, technologies, descri
 VALUES
 	('Proyectos Molones', 'Confía en el proceso', 'https://www.google.es', 'https://www.google.es', 'HTML, CSS, JS y React', 'Es un proyecto sobre bases de datos', 'https://es.unesco.org/youth/toptips/user/pages/images/home-feature-two_mobile.png', 1),
     ('Proyectos más molones', 'Hoy me siento un poco column-reverse', 'https://www.google.es', 'https://www.google.es', 'HTML, CSS, JS y React', 'Es un proyecto sobre las dificultades de programar', 'https://assets.asana.biz/m/2729b34d99aa7f91/webimage-article-project-planning-project-design-2x.jpg', 2);
+    
+SELECT *
+FROM autor, project
+WHERE project.fk_autor = autor.id;
 
 
     
