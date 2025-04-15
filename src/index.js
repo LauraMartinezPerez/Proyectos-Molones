@@ -3,6 +3,8 @@
 const express = require("express");
 const cors = require ("cors");
 
+const path = require("path");
+
 //2. Crear el servidor
 const server = express();
 
@@ -11,9 +13,9 @@ server.use(cors());
 /* server.use(express.json({limit: "25mb"})); */
 
 //4. Arrancar el servidor en el puerto
-const port = 4000;
+const port = 5001;
 server.listen(port, () => {
-    console.log("Serever is running on http://localhost:" + port)
+    console.log("Serever is running on http://localhost:" + port);
 })
 
 //5. Servidor de estaticos
