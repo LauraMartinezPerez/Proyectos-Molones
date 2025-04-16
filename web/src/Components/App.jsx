@@ -30,6 +30,15 @@ function App() {
         );
     });
     const [loading, setLoading] = useState(null);
+    const [projectsData, setProjectsData] = useState("");
+
+    useEffect(() => {
+        fetch("http://localhost:5001/projects/list")
+            .then((res) => res.json())
+            .then((data) => {
+                setProjectsData(data.result);
+            });
+    }, []);
 
     useEffect(() => {
         localStorageService.set("projectInfo", projectInfo);
@@ -114,7 +123,6 @@ function App() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.cardURL);
                 setCardLink(data.cardURL);
             })
             .finally(() => setLoading(false));
@@ -148,13 +156,14 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/projectList" element={<ProjectList 
-                   />} />
+                    <Route
+                        path="/projectList"
+                        element={<ProjectList cardData={projectsData} />}
+                    />
                     <Route
                         path="/project"
                         element={
                             <main className="main">
-
                                 <Hero />
 
                                 <Preview project={projectInfo} />
