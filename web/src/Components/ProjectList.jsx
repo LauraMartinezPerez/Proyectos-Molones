@@ -38,7 +38,7 @@ function ProjectList({ cardData }) {
             <div className="container">
                 <section className="cardList">
                     {cardData.map((dataProject, index) => {
-                        <Card cardData={dataProject} key={index} />;
+                        return <Card cardData={dataProject} key={index} />;
                     })}
                 </section>
             </div>
