@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../scss/layout/ProjectList.scss";
-import Hero from "./Hero";
+import Hero2 from "./Hero2";
 import Card from "./Card";
 
 // const fakeProjects = [{
@@ -33,7 +33,7 @@ import Card from "./Card";
 function ProjectList({ cardData }) {
     return (
         <>
-            <Hero />
+            <Hero2 />
             <div className="container">
                 <section className="cardList">
                     {cardData.map((dataProject, index) => {

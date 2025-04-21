@@ -165,7 +165,6 @@ function App() {
                         element={
                             <main className="main">
                                 <Hero />
-
                                 <Preview project={projectInfo} />
 
                                 <Form
