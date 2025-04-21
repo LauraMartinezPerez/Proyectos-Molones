@@ -123,7 +123,6 @@ function App() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.cardURL);
                 setCardLink(data.cardURL);
             })
             .finally(() => setLoading(false));
