@@ -5,5 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {open: true,},
+  base: "project-promo-48-module-4-team-3"
 
 });
