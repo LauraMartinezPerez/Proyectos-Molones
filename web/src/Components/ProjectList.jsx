@@ -31,15 +31,13 @@ import Card from "./Card";
 // }];
 
 function ProjectList({ cardData }) {
-
     return (
         <>
             <Hero />
             <div className="container">
                 <section className="cardList">
                     {cardData.map((dataProject, index) => {
-                      return (
-                        <Card cardData={dataProject} key={index} />);
+                        return <Card cardData={dataProject} key={index} />;
                     })}
                 </section>
             </div>
