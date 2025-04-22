@@ -36,5 +36,11 @@ SELECT *
 FROM autor, project
 WHERE project.fk_autor = autor.id;
 
+SELECT * FROM autor;
+DESCRIBE autor;
+
+ALTER TABLE autor CHANGE COLUMN autorImage photo LONGTEXT NOT NULL;
+
+
 
     
