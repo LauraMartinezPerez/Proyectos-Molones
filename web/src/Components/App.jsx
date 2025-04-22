@@ -32,13 +32,25 @@ function App() {
     const [loading, setLoading] = useState(null);
     const [projectsData, setProjectsData] = useState("");
 
-    useEffect(() => {
+/*      useEffect(() => {
         fetch("http://localhost:5001/projects/list")
             .then((res) => res.json())
             .then((data) => {
+                
                 setProjectsData(data.result);
+                console.log(data.result);
             });
-    }, []);
+    }, []);  */
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("http://localhost:5001/projects/list");
+            const data = await response.json();
+            console.log(data.result);
+            setProjectsData(data.result);
+        };
+        fetchData()
+    }, []); 
 
     useEffect(() => {
         localStorageService.set("projectInfo", projectInfo);

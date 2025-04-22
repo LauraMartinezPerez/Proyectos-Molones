@@ -1,6 +1,7 @@
 //1. Importar los módulos de NPM que necesito
 const express = require("express");
 const cors = require("cors");
+const mysql = require("mysql2/promise");
 
 const path = require("path");
 
@@ -9,7 +10,21 @@ const server = express();
 
 //3. Configurar el servidor
 server.use(cors());
-/* server.use(express.json({limit: "25mb"})); */
+server.use(express.json({limit: "25mb"}));
+
+// Funcion que me conecta con la BBDD
+async function getDBConnection() {
+    const connection = await mysql.createConnection({
+        //consfig de la DB a la que me quiero conectar
+        host: "mysql-2270ced0-proyectos-molones48.b.aivencloud.com",
+        user: "avnadmin",
+        password: "AVNS_rxX94wnqdfiOXeWQBAu",
+        database: "defaultdb",
+        port: 15753
+    })
+    connection.connect();
+    return connection;
+}
 
 //4. Arrancar el servidor en el puerto
 const port = 5001;
@@ -17,7 +32,7 @@ server.listen(port, () => {
     console.log("Serever is running on http://localhost:" + port);
 });
 
-const fakeProjects = [
+/* const fakeProjects = [
     {
         name: "Poyectos Molones",
         slogan: "Confía en el proceso",
@@ -42,14 +57,14 @@ const fakeProjects = [
         image: "https://assets.asana.biz/m/2729b34d99aa7f91/webimage-article-project-planning-project-design-2x.jpg",
         photo: "https://cdn.pixabay.com/photo/2014/04/02/17/07/user-307993_1280.png",
     },
-];
+]; */
 
 //5. Servidor de estaticos
 const staticServerPath = "./web/dist"; //difino donde estan los ficheros a servir, la web
 server.use(express.static(staticServerPath));
 
-//6. Servidor dinámico
-server.get("/projects/list", (req, res) => {
+//6. Servidor dinámico - Endpoint
+/* server.get("/projects/list", (req, res) => {
     if (fakeProjects.length === 0) {
         res.status(404).json({
             status: "Error",
@@ -61,4 +76,23 @@ server.get("/projects/list", (req, res) => {
             result: fakeProjects,
         });
     }
-});
+}); */
+server.get("/projects/list", async (req, res) => {
+    /*
+    - conectarme a la DB
+    - escribir la query para obtener la info de proyectos/autor (SELECT)
+    - ejecutasr las querys
+    - finalizar la conexion con la DB
+    - devolver el resultado al front
+    */
+    const connection = await getDBConnection();
+    const query = "SELECT * FROM project, autor WHERE project.fk_autor = autor.id;";
+    const [projectsresult] = await connection.query(query);
+
+    connection.end();
+
+    res.status(200).json({
+        success: true,
+        result: projectsresult
+    });
+})
