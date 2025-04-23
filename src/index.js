@@ -100,3 +100,32 @@ server.get("/projects/list", async (req, res) => {
         result: projectsresult
     });
 })
+
+// ENDPOINTS
+
+server.post("/project/list", async (req, res) => {
+    const connection = await getDBConnection();
+    const projectData = req.body;
+    
+    const autorSql = "INSERT INTO autor (name, job, photo) VALUES (?, ?, ?)";
+    const [autorResult] = await connection.query(autorSql, [projectData.name, projectData.job, projectData.photo]);
+
+    const projectSql = "INSERT INTO project (projectName, slogan, demo, repository, technologies, description, image, fk_autor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    const [projectResult] = await connection.query(projectSql, [
+        projectData.projectName,
+        projectData.slogan,
+        projectData.demo,
+        projectData.repository,
+        projectData.technologies,
+        projectData.description,
+        projectData.image,
+        autorResult.insertId
+    ]);
+    connection.end();
+    res.status(201).json({
+        success: true,
+        cardUrl: "" // devolverá la url de la página del proyecto nuevo
+
+    })
+})
