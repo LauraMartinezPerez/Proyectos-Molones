@@ -5,6 +5,8 @@ const mysql = require("mysql2/promise");
 
 const path = require("path");
 
+require("dotenv").config();
+
 //2. Crear el servidor
 const server = express();
 
@@ -19,10 +21,10 @@ async function getDBConnection() {
     const connection = await mysql.createConnection({
         //consfig de la DB a la que me quiero conectar
         host: "mysql-2270ced0-proyectos-molones48.b.aivencloud.com",
-        user: "avnadmin",
-        password: "AVNS_rxX94wnqdfiOXeWQBAu",
-        database: "defaultdb",
-        port: 15753
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
+        port: process.env.DB_PORT
     })
     connection.connect();
     return connection;
