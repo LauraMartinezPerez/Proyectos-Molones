@@ -14,7 +14,8 @@ const server = express();
 server.use(cors());
 
 server.set("view engine", "ejs");
-server.use(express.json({limit: "25mb"}));
+server.use(express.json({limit: "10mb"}));
+server.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // Funcion que me conecta con la BBDD
 async function getDBConnection() {
