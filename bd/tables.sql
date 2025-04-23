@@ -41,6 +41,10 @@ DESCRIBE autor;
 
 ALTER TABLE autor CHANGE COLUMN autorImage photo LONGTEXT NOT NULL;
 
+INSERT INTO autor (name, job, photo) VALUES (?, ?, ?);
+INSERT INTO project (projectName, slogan, demo, repository, technologies, description, projectImage, fk_autor) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+
+ALTER TABLE project CHANGE COLUMN projectImage image LONGTEXT NOT NULL;
 
 
     
