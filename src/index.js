@@ -10,6 +10,8 @@ const server = express();
 
 //3. Configurar el servidor
 server.use(cors());
+
+server.set("view engine", "ejs");
 server.use(express.json({limit: "25mb"}));
 
 // Funcion que me conecta con la BBDD
