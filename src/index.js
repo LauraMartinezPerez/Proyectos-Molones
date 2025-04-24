@@ -113,7 +113,6 @@ server.post("/project/list", async (req, res) => {
         projectData.job, 
         projectData.photo
     ]);
-    const idNewAutor = autorResult.insertId; //id del autor que se acaba de añadir
 
     const projectSql = "INSERT INTO project (projectName, slogan, demo, repository, technologies, description, image, fk_autor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -125,7 +124,7 @@ server.post("/project/list", async (req, res) => {
         projectData.technologies,
         projectData.description,
         projectData.image,
-        idNewAutor
+        autorResult.insertId
     ]);
     console.log(autorResult);
 
