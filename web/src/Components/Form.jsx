@@ -138,7 +138,9 @@ const Form = (props) => {
                         required
                     />
                 </fieldset>
-
+                
+                {props.errorMessage && <div className="error"><p className="error__msg">{props.errorMessage}</p></div>}
+                
                 <fieldset className="addForm__group--upload">
                     <GetAvatar
                         text="Subir foto del proyecto"
