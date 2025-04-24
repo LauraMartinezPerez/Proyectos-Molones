@@ -32,7 +32,7 @@ function App() {
     const [loading, setLoading] = useState(null);
     const [projectsData, setProjectsData] = useState("");
 
-/*      useEffect(() => {
+    /*      useEffect(() => {
         fetch("http://localhost:5001/projects/list")
             .then((res) => res.json())
             .then((data) => {
@@ -49,8 +49,8 @@ function App() {
             console.log(data.result);
             setProjectsData(data.result);
         };
-        fetchData()
-    }, []); 
+        fetchData();
+    }, []);
 
     useEffect(() => {
         localStorageService.set("projectInfo", projectInfo);
