@@ -14,7 +14,7 @@ const server = express();
 server.use(cors());
 
 server.set("view engine", "ejs");
-server.use(express.json({limit: "10mb"}));
+server.use(express.json({ limit: "10mb" }));
 
 // Funcion que me conecta con la BBDD
 async function getDBConnection() {
@@ -24,8 +24,8 @@ async function getDBConnection() {
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
-        port: process.env.DB_PORT
-    })
+        port: process.env.DB_PORT,
+    });
     connection.connect();
     return connection;
 }
@@ -90,32 +90,34 @@ server.get("/projects/list", async (req, res) => {
     - devolver el resultado al front
     */
     const connection = await getDBConnection();
-    const query = "SELECT * FROM project, autor WHERE project.fk_autor = autor.id;";
+    const query =
+        "SELECT * FROM project, autor WHERE project.fk_autor = autor.id;";
     const [projectsresult] = await connection.query(query);
 
     connection.end();
 
     res.status(200).json({
         success: true,
-        result: projectsresult
+        result: projectsresult,
     });
-})
+});
 
 // ENDPOINTS
 
 server.post("/project/list", async (req, res) => {
     const connection = await getDBConnection();
     const projectData = req.body;
-    
+
     const autorSql = "INSERT INTO autor (name, job, photo) VALUES (?, ?, ?)";
     const [autorResult] = await connection.query(autorSql, [
-        projectData.name, 
-        projectData.job, 
-        projectData.photo
+        projectData.name,
+        projectData.job,
+        projectData.photo,
     ]);
     const idNewAutor = autorResult.insertId; //id del autor que se acaba de añadir
 
-    const projectSql = "INSERT INTO project (projectName, slogan, demo, repository, technologies, description, image, fk_autor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const projectSql =
+        "INSERT INTO project (projectName, slogan, demo, repository, technologies, description, image, fk_autor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     const [projectResult] = await connection.query(projectSql, [
         projectData.projectName,
@@ -125,15 +127,26 @@ server.post("/project/list", async (req, res) => {
         projectData.technologies,
         projectData.description,
         projectData.image,
-        idNewAutor
+        idNewAutor,
     ]);
     console.log(autorResult);
 
-    
     connection.end();
     res.status(201).json({
         success: true,
-        cardUrl: "" // devolverá la url de la página del proyecto nuevo
+        cardUrl: `http://localhost:5001/detail/${projectResult.insertId}`, // devolverá la url de la página del proyecto nuevo
+    });
+});
 
-    })
-})
+// motor de plantillas
+server.get("/detail/:idProject", async (req, res) => {
+    const connection = await getDBConnection();
+    const projectId = req.params.idProject;
+    const sqlQuery =
+        "SELECT * FROM project, autor WHERE project.fk_autor = autor.id AND project.id = ?";
+    const [result] = await connection.query(sqlQuery, [projectId]);
+    console.log(result);
+    connection.end();
+
+    res.render("projectDetail", { project: result[0] });
+});
