@@ -110,7 +110,7 @@ server.post("/project/list", async (req, res) => {
 
     const autorSql = "INSERT INTO autor (name, job, photo) VALUES (?, ?, ?)";
     const [autorResult] = await connection.query(autorSql, [
-        projectData.name,
+        projectData.autor,
         projectData.job,
         projectData.photo,
     ]);
@@ -120,21 +120,22 @@ server.post("/project/list", async (req, res) => {
         "INSERT INTO project (projectName, slogan, demo, repository, technologies, description, image, fk_autor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     const [projectResult] = await connection.query(projectSql, [
-        projectData.projectName,
+        projectData.name,
         projectData.slogan,
         projectData.demo,
-        projectData.repository,
+        projectData.repo,
         projectData.technologies,
-        projectData.description,
+        projectData.desc,
         projectData.image,
         idNewAutor,
     ]);
     console.log(autorResult);
+    console.log(projectResult.insertId)
 
     connection.end();
     res.status(201).json({
         success: true,
-        cardUrl: `http://localhost:5001/detail/${projectResult.insertId}`, // devolverá la url de la página del proyecto nuevo
+        cardURL: `http://localhost:5001/detail/${projectResult.insertId}`, // devolverá la url de la página del proyecto nuevo
     });
 });
 
@@ -148,5 +149,5 @@ server.get("/detail/:idProject", async (req, res) => {
     console.log(result);
     connection.end();
 
-    res.render("projectDetail", { project: result[0] });
+    res.render("projectDetail", { ...result[0] });
 });
