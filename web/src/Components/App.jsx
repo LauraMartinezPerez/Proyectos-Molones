@@ -126,7 +126,7 @@ function App() {
     };
     const handleSubmitProject = () => {
         setLoading(true);
-        fetch("https://dev.adalab.es/api/projectCard", {
+        fetch("hhttp://localhost:5001/detail/", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
