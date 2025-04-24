@@ -15,6 +15,7 @@ server.use(cors());
 
 server.set("view engine", "ejs");
 server.use(express.json({limit: "10mb"}));
+server.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // Funcion que me conecta con la BBDD
 async function getDBConnection() {
@@ -108,12 +109,7 @@ server.post("/project/list", async (req, res) => {
     const projectData = req.body;
     
     const autorSql = "INSERT INTO autor (name, job, photo) VALUES (?, ?, ?)";
-    const [autorResult] = await connection.query(autorSql, [
-        projectData.name, 
-        projectData.job, 
-        projectData.photo
-    ]);
-    const idNewAutor = autorResult.insertId; //id del autor que se acaba de añadir
+    const [autorResult] = await connection.query(autorSql, [projectData.name, projectData.job, projectData.photo]);
 
     const projectSql = "INSERT INTO project (projectName, slogan, demo, repository, technologies, description, image, fk_autor) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -125,11 +121,8 @@ server.post("/project/list", async (req, res) => {
         projectData.technologies,
         projectData.description,
         projectData.image,
-        idNewAutor
+        autorResult.insertId
     ]);
-    console.log(autorResult);
-
-    
     connection.end();
     res.status(201).json({
         success: true,

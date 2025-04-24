@@ -31,6 +31,7 @@ import Card from "./Card";
 // }];
 
 function ProjectList({ cardData }) {
+    console.log('cardData:', cardData);
     return (
         <>
             <Hero2 />
