@@ -2,9 +2,9 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
-
+const app = express();
 const path = require("path");
-
+app.use(express.static(path.join(__dirname, 'public')));
 require("dotenv").config();
 
 //2. Crear el servidor

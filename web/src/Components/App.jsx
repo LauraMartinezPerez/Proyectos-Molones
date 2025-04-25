@@ -126,7 +126,7 @@ function App() {
     };
     const handleSubmitProject = () => {
         setLoading(true);
-        fetch("hhttp://localhost:5001/detail/", {
+        fetch("http://localhost:5001/detail/", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
@@ -135,6 +135,7 @@ function App() {
         })
             .then((res) => res.json())
             .then((data) => {
+                
                 setCardLink(data.cardURL);
             })
             .finally(() => setLoading(false));
