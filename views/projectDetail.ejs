@@ -1,24 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="es">
-<<<<<<< HEAD
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Proyectos Molones</title>
-    <<link rel="stylesheet" href="/css/projectDetail.css">
-</head>
-<body>
-    <main class="mainLanding container">
-        <section class="hero">
-            <h2 class="title">Proyectos molones</h2>
-            <p class="hero__text">
-                Proyecto <%= project.projectName %> realizado por <%= project.name %>
-            </p>
-            <a href="/#/catalog" class="button--link">Volver</a>
-        </section>
-        <section class="mainLanding__sectionCard landing">
-            <div class="projectImage">
-=======
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,7 +14,7 @@
                 <p class="hero__text">
                     Proyecto <%= projectName %> realizado por <%= name %>
                 </p>
-                <a href="/#/catalog" class="button--link">Volver</a>
+                <a href="/" class="button--link">Volver</a>
             </section>
             <section class="mainLanding__sectionCard landing">
                 <div class="projectImage">
@@ -99,76 +81,11 @@
         </main>
         <footer class="footer">
             <a>
->>>>>>> main
                 <img
-                    class="image"
-                    src="<%= project.image %>"
-                    alt="Foto de la tarjeta"
+                    class="logoSponsor"
+                    src="https://adalab.es/wp-content/uploads/2022/03/logo-adalab.png"
                 />
-            </div>
-            <article class="card">
-                <h2 class="card__projectTitle">
-                    <span class="card__projectTitle--text">
-                        Proyectos molones
-                    </span>
-                </h2>
-                <div class="card__author">
-                    <div class="card__authorPhoto">
-                        <img
-                            class="preview__photo"
-                            src="<%= project.photo %>"
-                            alt="Foto de la autora"
-                        />
-                    </div>
-                    <p class="card__job"><%= project.job %></p>
-                    <h3 class="card__name"><%= project.name %></h3>
-                </div>
-                <div class="card__project">
-                    <div>
-                        <h3 class="card__name"><%= project.projectName %></h3>
-                        <p class="card__slogan"><%= project.slogan %></p>
-                    </div>
-                    <div>
-                        <h3 class="card__descriptionTitle">
-                            Product description
-                        </h3>
-                        <p class="card__description"><%= project.description %></p>
-                    </div>
-                    <div class="card__technicalInfo">
-                        <p class="card__technologies">
-                            <%= project.technologies %>
-                        </p>
-                        <a
-                            class="icon icon__www"
-                            href="<%= project.demo %>"
-                            target="_blank"
-                            rel="noreferrer"
-                            title="Haz click para ver el proyecto online"
-                        >
-                            Web link
-                        </a>
-                        <a
-                            class="icon icon__github"
-                            href="<%= project.repository %>"
-                            target="_blank"
-                            rel="noreferrer"
-                            title="Haz click para ver el código del proyecto"
-                        >
-                            GitHub link
-                        </a>
-                    </div>
-                </div>
-            </article>
-        </section>
-    </main>
-    <footer class="footer">
-        <a>
-            <img
-                class="logoSponsor"
-                src="https://adalab.es/wp-content/uploads/2022/03/logo-adalab.png"
-            />
-        </a>
-    </footer>
-</body>
+            </a>
+        </footer>
+    </body>
 </html>
-

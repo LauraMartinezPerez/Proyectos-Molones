@@ -126,11 +126,7 @@ function App() {
     };
     const handleSubmitProject = () => {
         setLoading(true);
-<<<<<<< HEAD
-        fetch("http://localhost:5001/detail/", {
-=======
         fetch(`http://localhost:5001/project/list`, {
->>>>>>> main
             method: "POST",
             headers: {
                 "Content-type": "application/json",

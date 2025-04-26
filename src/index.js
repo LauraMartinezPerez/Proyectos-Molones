@@ -2,9 +2,10 @@
 const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2/promise");
-const app = express();
+/* const app = express(); */
 const path = require("path");
-app.use(express.static(path.join(__dirname, 'public')));
+/* const pathServerPublicStyles = './src/public-css';
+app.use(express.static(path.join(__dirname, 'public'))); */
 require("dotenv").config();
 
 //2. Crear el servidor
@@ -12,9 +13,18 @@ const server = express();
 
 //3. Configurar el servidor
 server.use(cors());
-
 server.set("view engine", "ejs");
 server.use(express.json({ limit: "10mb" }));
+/* server.use(express.static(pathServerPublicStyles)); */
+// Publicar CSS
+server.use(express.static(path.join(__dirname, "public-css")));
+
+// Publicar imágenes
+server.use(express.static(path.join(__dirname, "public-images")));
+
+// Publicar tu web estática (la parte frontend compilada)
+server.use(express.static(path.join(__dirname, "../web/dist")));
+
 
 // Funcion que me conecta con la BBDD
 async function getDBConnection() {
