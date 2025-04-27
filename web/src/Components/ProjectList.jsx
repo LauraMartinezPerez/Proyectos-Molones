@@ -11,7 +11,8 @@ function ProjectList({ cardData }) {
     return (
         <>
             <Hero2 />
-        <div>
+        <div className="container">
+            <section className="cardList">
           {cardData.map((dataProject) => (
             <div key={dataProject.id}>
               <Link to={`http://localhost:5001/detail/${dataProject.id}`}>
@@ -19,6 +20,7 @@ function ProjectList({ cardData }) {
               </Link>
             </div>
           ))}
+          </section>
         </div>
         </>
       );
