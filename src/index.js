@@ -16,8 +16,7 @@ server.use(express.json({ limit: "10mb" }));
 server.use(express.static(path.join(__dirname, "public-css")));
 // Publicar imágenes
 server.use(express.static(path.join(__dirname, "public-images")));
-// Publicar tu web estática (la parte frontend compilada)
-server.use(express.static(path.join(__dirname, "../web/dist")));
+
 
 
 // Funcion que me conecta con la BBDD
