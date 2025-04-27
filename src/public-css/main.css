@@ -90,28 +90,6 @@
     
   }
 
-  .hero .hero__text:before {
-    content: "";
-    position: absolute;
-    top: 7%;
-    right: 100px;
-    bottom: 97%;
-    left: 100px;
-
-    margin-bottom: -2px;
-    border-radius: inherit;
-    background-color: transparent;
-    background-image: linear-gradient(
-        to left,
-        transparent,
-        #343045 25%,
-        #c0b7e8 45%,
-        var(--color-dark-lilac), 65%,
-        #343045 75%,
-        transparent
-    );
-}
-
   .projectImage {
     max-width: 900px;
     aspect-ratio: 16/9;

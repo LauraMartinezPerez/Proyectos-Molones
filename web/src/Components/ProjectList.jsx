@@ -1,3 +1,5 @@
+
+
 import { Link } from "react-router-dom";
 import "../scss/layout/ProjectList.scss";
 import Hero2 from "./Hero2";
@@ -9,16 +11,17 @@ function ProjectList({ cardData }) {
     return (
         <>
             <Hero2 />
-            <div className="container">
-                <section className="cardList">
-                    {cardData.map((dataProject, index) => {
-                        console.log("dataproject:", dataProject );
-                        return <Card cardData={dataProject} key={index} />;
-                    })}
-                </section>
+        <div>
+          {cardData.map((dataProject) => (
+            <div key={dataProject.id}>
+              <Link to={`http://localhost:5001/detail/${dataProject.id}`}>
+                <Card cardData={dataProject} />
+              </Link>
             </div>
+          ))}
+        </div>
         </>
-    );
+      );
 }
 
-export default ProjectList;
+export default ProjectList; 

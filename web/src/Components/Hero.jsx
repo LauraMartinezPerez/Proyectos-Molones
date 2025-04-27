@@ -9,7 +9,7 @@ function Hero() {
         través de la tecnología
     </p>
     <Link to="/projectList" className="button--link">
-    Ver Proyecto
+    Ver Proyectos
     </Link> 
 </section>
   )
