@@ -41,7 +41,7 @@ server.listen(port, () => {
 
 
 //5. Servidor de estaticos
-const staticServerPath = "./web/dist"; //difino donde estan los ficheros a servir, la web
+const staticServerPath = "./src/public-react"; //difino donde estan los ficheros a servir, la web
 server.use(express.static(staticServerPath));
 
 //6. Servidor dinámico - Endpoint
