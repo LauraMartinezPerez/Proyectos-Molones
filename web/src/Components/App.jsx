@@ -11,6 +11,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import localStorageService from "../services/localStorage";
 
+
+
 function App() {
     const [cardLink, setCardLink] = useState("");
     const [projectInfo, setProjectInfo] = useState(() => {
@@ -135,6 +137,7 @@ function App() {
         })
             .then((res) => res.json())
             .then((data) => {
+                
                 setCardLink(data.cardURL);
             })
             .finally(() => setLoading(false));
@@ -171,6 +174,7 @@ function App() {
                     <Route
                         path="/projectList"
                         element={<ProjectList cardData={projectsData} />}
+                        
                     />
                     <Route
                         path="/project"

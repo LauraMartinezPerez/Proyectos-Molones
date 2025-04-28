@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -7,13 +8,13 @@
         <link rel="stylesheet" href="/main.css" />
     </head>
     <body>
-        <main class="mainLanding container">
+        <main class="main container">
             <section class="hero">
                 <h2 class="title">Proyectos molones</h2>
                 <p class="hero__text">
                     Proyecto <%= projectName %> realizado por <%= name %>
                 </p>
-                <a href="/#/catalog" class="button--link">Volver</a>
+                <a href="http://localhost:5173/project-promo-48-module-4-team-3#/project" class="button--link">Volver</a>
             </section>
             <section class="mainLanding__sectionCard landing">
                 <div class="projectImage">
@@ -51,15 +52,14 @@
                             </h3>
                             <p class="card__description"><%= description %></p>
                         </div>
-                        <div class="card__technicalInfo">
-                            <p class="card__technologies">
+                        <div class="card__technologies">
+                            <p>
                                 <%= technologies %>
                             </p>
                             <a
                                 class="icon icon__www"
                                 href="<%= repository %>"
                                 target="_blank"
-                                rel="noreferrer"
                                 title="Haz click para ver el proyecto online"
                             >
                                 Web link
@@ -68,7 +68,6 @@
                                 class="icon icon__github"
                                 href="<%= demo %>"
                                 target="_blank"
-                                rel="noreferrer"
                                 title="Haz click para ver el código del proyecto"
                             >
                                 GitHub link
@@ -81,7 +80,7 @@
         <footer class="footer">
             <a>
                 <img
-                    class="logoSponsor"
+                    class="logoAdalab"
                     src="https://adalab.es/wp-content/uploads/2022/03/logo-adalab.png"
                 />
             </a>
