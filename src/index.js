@@ -27,14 +27,14 @@ async function getDBConnection() {
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
-        port: process.env.DB_PORT,
+        port: 15753
     });
     connection.connect();
     return connection;
 }
 
 //4. Arrancar el servidor en el puerto
-const port = 5001;
+const port = process.env.PORT;
 server.listen(port, () => {
     console.log("Serever is running on http://localhost:" + port);
 });
