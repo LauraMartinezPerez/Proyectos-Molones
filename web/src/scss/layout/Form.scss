@@ -203,3 +203,20 @@
         transform: translateX(150%) rotate(360deg);
     }
 }
+
+.error {
+    width: 60%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    background-color: vars.$color-white;
+    border: 2px solid black;
+
+    &__msg {
+        color: black;
+        font: vars.$font-text-big;
+        text-align: center;
+    }
+}

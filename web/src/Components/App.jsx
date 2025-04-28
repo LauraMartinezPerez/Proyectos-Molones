@@ -33,6 +33,7 @@ function App() {
     });
     const [loading, setLoading] = useState(null);
     const [projectsData, setProjectsData] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     /*      useEffect(() => {
         fetch("http://localhost:5001/projects/list")
@@ -118,6 +119,10 @@ function App() {
             ...projectInfo,
             image: valueImageProject,
         });
+
+        if(errorMessage.includes("proyecto")) {
+            setErrorMessage("");
+        }
     };
 
     const handleChangeAvatar = (valueAvatar) => {
@@ -125,9 +130,22 @@ function App() {
             ...projectInfo,
             photo: valueAvatar,
         });
+
+        if(errorMessage.includes("autora")) {
+            setErrorMessage("");
+        }
     };
     const handleSubmitProject = () => {
+        if(!projectInfo.image) {
+            setErrorMessage("⚠️ Sube la foto del proyecto");
+            return;
+        }
+        if(!projectInfo.photo) {
+            setErrorMessage("⚠️ Sube la foto de la autora");
+            return;
+        }
         setLoading(true);
+        
         fetch(`http://localhost:5001/project/list`, {
             method: "POST",
             headers: {
@@ -139,6 +157,9 @@ function App() {
             .then((data) => {
                 
                 setCardLink(data.cardURL);
+            })
+            .catch(() => {
+                setErrorMessage("Error al enviar proyecto");
             })
             .finally(() => setLoading(false));
     };
@@ -198,6 +219,7 @@ function App() {
                                     }
                                     onChangeAvatar={handleChangeAvatar}
                                     onSavedProject={handleSubmitProject}
+                                    errorMessage={errorMessage}
                                     cardLink={cardLink}
                                     onResetForm={handleReset}
                                     onCardClicked={handleCardClicked}
