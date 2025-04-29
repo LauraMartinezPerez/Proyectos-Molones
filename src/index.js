@@ -15,14 +15,14 @@ require("dotenv").config();
 
  const URL = process.env.NODE_ENV === "development" ? process.env.URL_LOCAL : process.env.URL_PRODUCTION;
 
-
+ server.use(express.static(path.join(__dirname, 'public')));
 // Publicar CSS
  server.use(express.static(path.join(__dirname, "public-css")));
  // Publicar imágenes
  server.use(express.static(path.join(__dirname, "public-images"))); 
  //5. Servidor de estaticos //difino donde estan los ficheros a servir, la web
-const staticServerPath = "./src/public-react"; 
-server.use(express.static(staticServerPath));
+/* const staticServerPath = "./src/public-react"; 
+server.use(express.static(staticServerPath)); */
 
 /* const pathServerPublicStyles = "./src/public-css";
 server.use(express.static(pathServerPublicStyles));
