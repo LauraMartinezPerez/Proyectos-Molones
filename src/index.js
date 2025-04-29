@@ -25,8 +25,8 @@ async function getDBConnection() {
         host: "mysql-2270ced0-proyectos-molones48.b.aivencloud.com",
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE,
-        port: process.env.DB_PORT,
+        database: "defaultdb",
+        port: 15753,
         ssl: {
             rejectUnauthorized: true,
         },
@@ -52,21 +52,11 @@ server.listen(port, () => {
 //5. Servidor de estaticos
 const staticServerPath = "./src/public-react"; //difino donde estan los ficheros a servir, la web
 server.use(express.static(staticServerPath));
+const pathServerPublicStyles = "./src/public-css";
+server.use(express.static(pathServerPublicStyles));
+const pathServerPublicImages = "./src/public-images";
+server.use(express.static(pathServerPublicImages));
 
-//6. Servidor dinámico - Endpoint
-/* server.get("/projects/list", (req, res) => {
-    if (fakeProjects.length === 0) {
-        res.status(404).json({
-            status: "Error",
-            message: "No se han encontrado resultados",
-        });
-    } else {
-        res.status(200).json({
-            status: "succes",
-            result: fakeProjects,
-        });
-    }
-}); */
 server.get("/projects/list", async (req, res) => {
     /*
     - conectarme a la DB
