@@ -21,16 +21,16 @@ require("dotenv").config();
  // Publicar imágenes
  server.use(express.static(path.join(__dirname, "public-images"))); */
  //5. Servidor de estaticos //difino donde estan los ficheros a servir, la web
-/* const staticServerPath = "./src/public-react"; 
+ const staticServerPath = "./src/public-react"; 
 server.use(express.static(staticServerPath));
 
 const pathServerPublicStyles = "./src/public-css";
 server.use(express.static(pathServerPublicStyles));
 
 const pathServerPublicImages = "./src/public-images";
-server.use(express.static(pathServerPublicImages)); */
+server.use(express.static(pathServerPublicImages)); 
 
-
+/* 
 // Publicar la aplicación React
 server.use(express.static(path.join(__dirname, 'src', 'public-react')));
 
@@ -38,7 +38,7 @@ server.use(express.static(path.join(__dirname, 'src', 'public-react')));
 server.use(express.static(path.join(__dirname, 'src', 'public-css')));
 
 // Publicar imágenes
-server.use(express.static(path.join(__dirname, 'src', 'public-images')));
+server.use(express.static(path.join(__dirname, 'src', 'public-images'))); */
 
  // Funcion que me conecta con la BBDD
  async function getDBConnection() {
