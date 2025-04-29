@@ -45,9 +45,13 @@ function App() {
             });
     }, []);  */
 
+    const URL_PRODUCTION = "https://project-promo-48-module-4-team-3.onrender.com";
+    const URL_LOCAL = "http://localhost:5001";
+    const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
+
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("http://localhost:5001/projects/list");
+            const response = await fetch(`${URL}/projects/list`);
             const data = await response.json();
             console.log(data.result);
             setProjectsData(data.result);
