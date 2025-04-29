@@ -12,10 +12,19 @@ require("dotenv").config();
  server.use(cors());
  server.set("view engine", "ejs");
  server.use(express.json({ limit: "10mb" }));
- // Publicar CSS
+/*  // Publicar CSS
  server.use(express.static(path.join(__dirname, "public-css")));
  // Publicar imágenes
- server.use(express.static(path.join(__dirname, "public-images")));
+ server.use(express.static(path.join(__dirname, "public-images"))); */
+ //5. Servidor de estaticos //difino donde estan los ficheros a servir, la web
+const staticServerPath = "./src/public-react"; 
+server.use(express.static(staticServerPath));
+
+const pathServerPublicStyles = "./src/public-css";
+server.use(express.static(pathServerPublicStyles));
+
+const pathServerPublicImages = "./src/public-images";
+server.use(express.static(pathServerPublicImages));
 
  // Funcion que me conecta con la BBDD
  async function getDBConnection() {
@@ -36,9 +45,7 @@ const port = process.env.PORT;
 server.listen(port, () => {
     console.log("Serever is running on http://localhost:" + port);
 });
-//5. Servidor de estaticos
-const staticServerPath = "./web/dist"; //difino donde estan los ficheros a servir, la web
-server.use(express.static(staticServerPath));
+
 
 server.get("/projects/list", async (req, res) => {
     /*
