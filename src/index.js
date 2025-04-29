@@ -30,7 +30,7 @@ server.use(express.static(pathServerPublicStyles));
 const pathServerPublicImages = "./src/public-images";
 server.use(express.static(pathServerPublicImages)); */
 
-server.set("views", path.join(__dirname, "views"));
+/* server.set("views", path.join(__dirname, "views")); */
 
 // Publicar la aplicación React
 server.use(express.static(path.join(__dirname, 'src', 'public-react')));
