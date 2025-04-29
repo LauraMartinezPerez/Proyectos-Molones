@@ -12,6 +12,10 @@ require("dotenv").config();
  server.use(cors());
  server.set("view engine", "ejs");
  server.use(express.json({ limit: "10mb" }));
+
+ const URL = process.env.NODE_ENV === "development" ? process.env.URL_LOCAL : process.env.URL_PRODUCTION;
+
+
 /*  // Publicar CSS
  server.use(express.static(path.join(__dirname, "public-css")));
  // Publicar imágenes
@@ -101,7 +105,8 @@ server.get("/projects/list", async (req, res) => {
     connection.end();
     res.status(201).json({
         success: true,
-        cardURL: `http://localhost:5001/detail/${projectResult.insertId}`, // devolverá la url de la página del proyecto nuevo
+      /*   cardURL: `http://localhost:5001/detail/${projectResult.insertId}` */, // devolverá la url de la página del proyecto nuevo
+        cardUrl: `${URL}/detail/${projectResult.insertId}`,
     });
 });
 
