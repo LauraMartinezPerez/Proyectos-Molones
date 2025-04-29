@@ -105,7 +105,7 @@ server.get("/projects/list", async (req, res) => {
     connection.end();
     res.status(201).json({
         success: true,
-      /*   cardURL: `http://localhost:5001/detail/${projectResult.insertId}` */, // devolverá la url de la página del proyecto nuevo
+      /*   cardURL: `http://localhost:5001/detail/${projectResult.insertId}` ,*/ // devolverá la url de la página del proyecto nuevo
         cardUrl: `${URL}/detail/${projectResult.insertId}`,
     });
 });
