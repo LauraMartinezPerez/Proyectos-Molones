@@ -150,13 +150,13 @@ function App() {
         }
         setLoading(true);
         
-        fetch(`http://localhost:5001/project/list`, {
+        fetch(`${URL}/project/list`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
             },
             body: JSON.stringify(projectInfo),
-        })
+        })        
             .then((res) => res.json())
             .then((data) => {
                 

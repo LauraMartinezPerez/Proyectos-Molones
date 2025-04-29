@@ -27,7 +27,7 @@ async function getDBConnection() {
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
-        port: 15753
+        port: process.env.DB_PORT
     });
     connection.connect();
     return connection;
@@ -36,8 +36,14 @@ async function getDBConnection() {
 //4. Arrancar el servidor en el puerto
 const port = process.env.PORT;
 server.listen(port, () => {
-    console.log("Serever is running on http://localhost:" + port);
+    const projectUrlBase =
+        process.env.NODE_ENV === "development"
+            ? `http://localhost:${port}`
+            : "https://project-promo-48-module-4-team-3.onrender.com";
+
+    console.log(`Server is running on ${projectUrlBase}`);
 });
+
 
 
 //5. Servidor de estaticos
@@ -110,10 +116,14 @@ server.post("/project/list", async (req, res) => {
     console.log(projectResult.insertId)
 
     connection.end();
-    res.status(201).json({
-        success: true,
-        cardURL: `http://localhost:5001/detail/${projectResult.insertId}`, // devolverá la url de la página del proyecto nuevo
-    });
+    const projectUrlBase =
+    process.env.NODE_ENV === "development" ? "http://localhost:5001" : "https://project-promo-48-module-4-team-3.onrender.com";
+  
+  res.status(201).json({
+      success: true,
+      cardURL: `${projectUrlBase}/detail/${projectResult.insertId}`
+  });
+  
 });
 
 // motor de plantillas
