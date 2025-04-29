@@ -4,34 +4,29 @@ const cors = require("cors");
 const mysql = require("mysql2/promise");
 const path = require("path");
 require("dotenv").config();
+ 
+ //2. Crear el servidor
+ const server = express();
+ 
+ //3. Configurar el servidor
+ server.use(cors());
+ server.set("view engine", "ejs");
+ server.use(express.json({ limit: "10mb" }));
+ // Publicar CSS
+ server.use(express.static(path.join(__dirname, "public-css")));
+ // Publicar imágenes
+ server.use(express.static(path.join(__dirname, "public-images")));
 
-//2. Crear el servidor
-const server = express();
-
-//3. Configurar el servidor
-server.use(cors());
-server.set("view engine", "ejs");
-server.use(express.json({ limit: "10mb" }));
-// Publicar CSS
-server.use(express.static(path.join(__dirname, "public-css")));
-// Publicar imágenes
-server.use(express.static(path.join(__dirname, "public-images")));
-
-
-
-// Funcion que me conecta con la BBDD
-async function getDBConnection() {
+ // Funcion que me conecta con la BBDD
+ async function getDBConnection() {
     const connection = await mysql.createConnection({
+        //consfig de la DB a la que me quiero conectar
         host: "mysql-2270ced0-proyectos-molones48.b.aivencloud.com",
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: "defaultdb",
         port: 15753,
-        ssl: {
-            rejectUnauthorized: true,
-        },
     });
-
     connection.connect();
     return connection;
 }
@@ -39,23 +34,11 @@ async function getDBConnection() {
 //4. Arrancar el servidor en el puerto
 const port = process.env.PORT;
 server.listen(port, () => {
-    const projectUrlBase =
-        process.env.NODE_ENV === "development"
-            ? `http://localhost:${port}`
-            : "https://project-promo-48-module-4-team-3.onrender.com";
-
-    console.log(`Server is running on ${projectUrlBase}`);
+    console.log("Serever is running on http://localhost:" + port);
 });
-
-
-
 //5. Servidor de estaticos
-const staticServerPath = "./src/public-react"; //difino donde estan los ficheros a servir, la web
+const staticServerPath = "./web/dist"; //difino donde estan los ficheros a servir, la web
 server.use(express.static(staticServerPath));
-const pathServerPublicStyles = "./src/public-css";
-server.use(express.static(pathServerPublicStyles));
-const pathServerPublicImages = "./src/public-images";
-server.use(express.static(pathServerPublicImages));
 
 server.get("/projects/list", async (req, res) => {
     /*
@@ -78,9 +61,9 @@ server.get("/projects/list", async (req, res) => {
     });
 });
 
-// ENDPOINTS
-
-server.post("/project/list", async (req, res) => {
+ // ENDPOINTS
+ 
+ server.post("/project/list", async (req, res) => {
     const connection = await getDBConnection();
     const projectData = req.body;
 
@@ -109,14 +92,10 @@ server.post("/project/list", async (req, res) => {
     console.log(projectResult.insertId)
 
     connection.end();
-    const projectUrlBase =
-    process.env.NODE_ENV === "development" ? "http://localhost:5001" : "https://project-promo-48-module-4-team-3.onrender.com";
-  
-  res.status(201).json({
-      success: true,
-      cardURL: `${projectUrlBase}/detail/${projectResult.insertId}`
-  });
-  
+    res.status(201).json({
+        success: true,
+        cardURL: `http://localhost:5001/detail/${projectResult.insertId}`, // devolverá la url de la página del proyecto nuevo
+    });
 });
 
 // motor de plantillas
