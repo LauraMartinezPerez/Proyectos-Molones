@@ -11,7 +11,9 @@ import "../scss/App.scss";
  import Home from "./Home";
  import localStorageService from "../services/localStorage";
  
- 
+const URL_PRODUCTION = "https://proyectosmolones-f9hk.onrender.com";
+const URL_LOCAL = "http://localhost:5001";
+const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
  
  function App() {
      const [cardLink, setCardLink] = useState("");
@@ -47,7 +49,7 @@ import "../scss/App.scss";
  
      useEffect(() => {
          const fetchData = async () => {
-             const response = await fetch("http://localhost:5001/projects/list");
+             const response = await fetch(`${URL}/projects/list`);
              const data = await response.json();
              console.log(data.result);
              setProjectsData(data.result);
@@ -146,7 +148,7 @@ import "../scss/App.scss";
          }
          setLoading(true);
          
-         fetch(`http://localhost:5001/project/list`, {
+         fetch(`${URL}/projects/list`, {
              method: "POST",
              headers: {
                  "Content-type": "application/json",
