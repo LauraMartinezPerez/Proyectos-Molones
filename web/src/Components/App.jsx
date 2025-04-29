@@ -13,8 +13,10 @@ import "../scss/App.scss";
  
 const URL_PRODUCTION = "https://proyectosmolones-f9hk.onrender.com";
 const URL_LOCAL = "http://localhost:5001";
-const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
- 
+/* const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
+  */
+const URL = import.meta.env.MODE === "development" ? URL_LOCAL : URL_PRODUCTION;
+
  function App() {
      const [cardLink, setCardLink] = useState("");
      const [projectInfo, setProjectInfo] = useState(() => {
