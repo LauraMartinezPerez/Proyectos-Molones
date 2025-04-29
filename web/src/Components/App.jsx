@@ -47,7 +47,8 @@ function App() {
 
     const URL_PRODUCTION = "https://project-promo-48-module-4-team-3.onrender.com";
     const URL_LOCAL = "http://localhost:5001";
-    const URL = process.env.REACT_APP_API_URL;
+    const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
+
 
 
     useEffect(() => {
